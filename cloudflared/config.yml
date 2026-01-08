@@ -1,0 +1,16 @@
+tunnel: e4666499-451c-4ebc-960e-884a0ad76a30
+credentials-file: /etc/cloudflared/credentials.json
+ingress:
+  - hostname: coolify.dvlpid.my.id
+    service: http://coolify:8000
+  - hostname: socket.dvlpid.my.id
+    service: http://coolify-realtime:6001
+  - hostname: pc1.dvlpid.my.id
+    service: http://host.docker.internal:3012
+  - hostname: ai.dvlpid.my.id
+    service: http://host.docker.internal:8045
+  - hostname: "*.dvlpid.my.id"
+    service: https://coolify-proxy:443
+    originRequest:
+      noTLSVerify: true
+  - service: http_status:404

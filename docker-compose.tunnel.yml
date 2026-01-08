@@ -1,0 +1,14 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token eyJhIjoiNmFlMTlmODM3YWNmYjMxZDhlOTYxMTE1MDgzMWJiZDEiLCJ0IjoiZTQ2NjY0OTktNDUxYy00ZWJjLTk2MGUtODg0YTBhZDc2YTMwIiwicyI6IjloT05GZEtNUEdaUS9SdXZqT1AxRzVxTkwzQjAvSm94K2lmYXQ2SHQxQW89In0=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true

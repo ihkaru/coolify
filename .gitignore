@@ -1,0 +1,24 @@
+# Environment files (contain secrets)
+.env
+*.env.local
+
+# Cloudflare credentials (sensitive)
+cloudflared/credentials.json
+
+# Dozzle user credentials (contains hashed passwords)
+dozzle_users.yml
+
+# Application data directories
+/applications/
+/backups/
+/databases/
+
+# Docker volumes data
+/data/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

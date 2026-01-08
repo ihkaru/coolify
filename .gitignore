@@ -8,16 +8,27 @@ cloudflared/credentials.json
 # Dozzle user credentials (contains hashed passwords)
 dozzle_users.yml
 
-# Application data directories
+# Application and Service data
 /applications/
-/backups/
+/services/
 /databases/
+/backups/
 
-# Docker volumes data
+# Security keys and certificates
+/ssh/
+/ssl/
+
+# Internal/Dynamic Data
 /data/
+/sentinel/
+/proxy/dynamic/
 
-# Logs
+# Database Dumps
+*.sql
+
+# Logs and Temp files
 *.log
+tables.txt
 
 # OS files
 .DS_Store

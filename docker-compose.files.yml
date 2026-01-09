@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      # Mount Host Configs (Read-Write)
+      - c:/coolify:/srv/coolify-configs
+      
+      # Persistence for FileBrowser itself (settings/db)
+      - filebrowser_data:/data
+      - filebrowser_config:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filebrowser.rule=Host(`files.dvlpid.my.id`)"
+      - "traefik.http.routers.filebrowser.entrypoints=https"
+      - "traefik.http.routers.filebrowser.tls=true"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
+    networks:
+      - coolify
+      - default
+
+networks:
+  coolify:
+    external: true
+
+volumes:
+  filebrowser_data:
+  filebrowser_config:

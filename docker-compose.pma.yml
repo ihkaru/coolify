@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      # Host Database COOLIFY Anda
+      - PMA_HOST=jc4ocw4ok0ccwkk4k0gwg0s0
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=Fikrizaki2
+      
+      # Optional: Upload Limit
+      - UPLOAD_LIMIT=128M
+    labels:
+      - "traefik.enable=true"
+      # Ganti domain sesuai keinginan
+      - "traefik.http.routers.phpmyadmin.rule=Host(`db.dvlpid.my.id`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=https"
+      - "traefik.http.routers.phpmyadmin.tls=true"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+    networks:
+      - coolify
+      - default
+
+networks:
+  coolify:
+    external: true
